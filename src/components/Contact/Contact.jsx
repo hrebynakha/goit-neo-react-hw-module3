@@ -3,8 +3,10 @@ import css from "./Contact.module.css";
 const Contact = ({ name, number }) => {
   return (
     <div className={css.contact}>
-      <span className={css.title}>{name}</span>
-      <span className={css.description}>{number}</span>
+      <div>
+        <span className={css.description}>{number}</span>
+        <span className={css.title}>{name}</span>
+      </div>
       <button className={css.btn}>Remove</button>
     </div>
   );

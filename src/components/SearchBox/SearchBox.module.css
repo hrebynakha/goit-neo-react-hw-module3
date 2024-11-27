@@ -9,3 +9,7 @@
   font-size: medium;
   font-family: sans-serif;
 }
+
+input[type="text"] {
+  background-color: #d1d1d1;
+}

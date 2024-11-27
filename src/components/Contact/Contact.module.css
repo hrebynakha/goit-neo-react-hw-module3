@@ -2,8 +2,7 @@
   display: flex;
   text-align: center;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-around;
   border: 1px solid #ffffff;
   border-radius: 12px;
   padding: 20px;
