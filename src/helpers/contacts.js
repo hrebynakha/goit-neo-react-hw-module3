@@ -1,8 +1,8 @@
 import { CONTACT_KEY } from "../../contacts.config";
 
-export function filterContacts(value) {
-  if (!localStorage.getItem(CONTACT_KEY)) return;
-  const contacts = JSON.parse(localStorage.getItem(CONTACT_KEY));
+export function filterContacts(contacts, value) {
+  // if (!localStorage.getItem(CONTACT_KEY)) return;
+  // const contacts = JSON.parse(localStorage.getItem(CONTACT_KEY));
   const validValue = value.trim().toLowerCase();
   if (validValue === "") return contacts;
   return contacts.filter(
