@@ -15,18 +15,19 @@ import { CONTACT_KEY } from "../contacts.config";
 
 function App() {
   const [contacts, setContacts] = useState(updateContacts());
-  const [savedContacts, setSavedContacts] = useState(contacts);
+  const [searchValue, setSearchValue] = useState("");
+  const filtredContacts = filterContacts(contacts, searchValue);
 
   const handleChange = ({ target: { value } }) => {
-    setContacts(filterContacts(savedContacts, value));
+    setSearchValue(value);
   };
 
   const handleDelete = (contactId) => {
-    const updatedContacts = savedContacts.filter(
+    const updatedContacts = contacts.filter(
       (contact) => contact.id != contactId
     );
 
-    setSavedContacts(updatedContacts);
+    setContacts(updatedContacts);
     toast.warn("Contact deleted!");
   };
 
@@ -40,22 +41,21 @@ function App() {
       id: nanoid(),
       ...contact,
     };
-    setSavedContacts((prevContacts) => [...prevContacts, newContact]);
+    setContacts((prevContacts) => [...prevContacts, newContact]);
     toast.info("Contact added");
   };
 
   useEffect(() => {
-    setContacts(savedContacts);
-    localStorage.setItem(CONTACT_KEY, JSON.stringify(savedContacts));
-  }, [savedContacts]);
+    localStorage.setItem(CONTACT_KEY, JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <Container>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox handleChange={handleChange} />
-      {contacts.length > 0 ? (
-        <ContactList contacts={contacts} onDelete={handleDelete} />
+      {filtredContacts.length > 0 ? (
+        <ContactList contacts={filtredContacts} onDelete={handleDelete} />
       ) : (
         <Notification />
       )}
