@@ -31,3 +31,11 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #360033;
+}

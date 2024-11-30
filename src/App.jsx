@@ -1,20 +1,20 @@
+import "./App.css";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./App.css";
+import { nanoid } from "nanoid";
+
+import Container from "./components/Container/Container";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactForm from "./components/ContactForm/ContactForm";
-import { nanoid } from "nanoid";
+import Notification from "./components/Notification/Notification";
 
-import defaultContacts from "../contacts.json";
 import { filterContacts, updateContacts } from "./helpers/contacts";
 import { CONTACT_KEY } from "../contacts.config";
 
 function App() {
-  const [contacts, setContacts] = useState(
-    updateContacts(defaultContacts, true)
-  );
+  const [contacts, setContacts] = useState(updateContacts());
   const [savedContacts, setSavedContacts] = useState(contacts);
 
   const handleChange = ({ target: { value } }) => {
@@ -50,13 +50,17 @@ function App() {
   }, [savedContacts]);
 
   return (
-    <>
+    <Container>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox handleChange={handleChange} />
-      <ContactList contacts={contacts} onDelete={handleDelete} />
+      {contacts.length > 0 ? (
+        <ContactList contacts={contacts} onDelete={handleDelete} />
+      ) : (
+        <Notification />
+      )}
       <ToastContainer />
-    </>
+    </Container>
   );
 }
 

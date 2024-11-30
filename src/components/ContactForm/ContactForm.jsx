@@ -1,6 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
+import { AiOutlinePhone, AiOutlineUser } from "react-icons/ai";
+import { IconContext } from "react-icons";
 
 const ContactForm = ({ onSubmit }) => {
   const contacForm = {
@@ -30,17 +32,35 @@ const ContactForm = ({ onSubmit }) => {
       validationSchema={contacForm.schema}
     >
       <Form className={css.form}>
-        <label htmlFor="name">Name</label>
-        <Field id="name" name="name"></Field>
-        <ErrorMessage name="name">
-          {(msg) => <div className={css.error}>{msg}</div>}
-        </ErrorMessage>
-        <label htmlFor="number">Phone</label>
-        <Field id="number" type="tel" name="number"></Field>
-        <ErrorMessage name="number">
-          {(msg) => <div className={css.error}>{msg}</div>}
-        </ErrorMessage>
-
+        <div className={css.formField}>
+          <label htmlFor="name">Name</label>
+          <div className={css.inputWrap}>
+            <Field id="name" name="name" placeholder="Name"></Field>
+            <IconContext.Provider value={{ className: "icon", size: 25 }}>
+              <AiOutlineUser />
+            </IconContext.Provider>
+          </div>
+          <ErrorMessage name="name">
+            {(msg) => <div className={css.error}>{msg}</div>}
+          </ErrorMessage>
+        </div>
+        <div className={css.formField}>
+          <label htmlFor="number">Phone</label>
+          <div className={css.inputWrap}>
+            <Field
+              id="number"
+              type="tel"
+              name="number"
+              placeholder="222-22-22"
+            ></Field>
+            <IconContext.Provider value={{ className: "icon", size: 25 }}>
+              <AiOutlinePhone />
+            </IconContext.Provider>
+          </div>
+          <ErrorMessage name="number">
+            {(msg) => <div className={css.error}>{msg}</div>}
+          </ErrorMessage>
+        </div>
         <button type="submit" className={css.btn}>
           Add contact
         </button>

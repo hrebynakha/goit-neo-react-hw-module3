@@ -1,15 +1,22 @@
 .sbox {
   border-radius: 12px;
-  height: 56px;
-  width: 50%;
   border: none;
   outline: transparent;
-  margin-bottom: 20px;
-  padding: 0 20px;
-  font-size: medium;
+  padding: 14px;
+  padding-left: 45px;
+  width: 100%;
+  font-size: 20px;
   font-family: sans-serif;
 }
 
 input[type="text"] {
-  background-color: #d1d1d1;
+  background-color: #faf7f7;
+}
+
+.inputWrap {
+  position: relative;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
