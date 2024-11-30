@@ -10,6 +10,7 @@ const SearchBox = ({ handleChange }) => {
         type="text"
         placeholder="Input search value"
         onChange={handleChange}
+        name="search"
       />
       <IconContext.Provider value={{ className: "icon", size: 25 }}>
         <AiOutlineSearch />
