@@ -18,7 +18,7 @@ const ContactForm = ({ onSubmit }) => {
       number: Yup.string()
         .required("Required")
         .min(3, "too short")
-        .max(30, "Must be 30 characters or less"),
+        .max(9, "Must be 9 characters or less"),
     }),
     submit: (values) => {
       onSubmit(values);
